@@ -1,13 +1,15 @@
 .profile__add-button {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: url(../../../images/add-button.svg) center no-repeat;
     width: 17%;
     height: 50px;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
     background-color: #000000;
+    cursor: pointer;
+}
+
+.profile__add-button:hover {
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 767px) {

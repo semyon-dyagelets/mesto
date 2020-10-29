@@ -1,4 +1,8 @@
 .element__like {
     border: none;
+    background: url(../../../images/icon-like.svg) center no-repeat;
     background-color: #FFFFFF;
+    background-size: 100%;
+    width: 21px;
+    height: 19px;
 }

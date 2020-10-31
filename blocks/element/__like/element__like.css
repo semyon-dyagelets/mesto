@@ -6,3 +6,7 @@
     width: 21px;
     height: 19px;
 }
+
+.element__like:hover {
+    opacity: .6;
+}

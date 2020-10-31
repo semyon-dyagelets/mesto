@@ -1,4 +1,5 @@
 .element__place-name {
+    max-width: 222px;
     margin: 0px;
     font-style: normal;
     font-weight: 900;

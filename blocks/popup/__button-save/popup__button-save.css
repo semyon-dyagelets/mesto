@@ -10,8 +10,8 @@
     cursor: pointer;
 }
 
-.profile__button-save:hover {
-    opacity: .6;
+.popup__button-save:hover {
+    background-color: rgba(0, 0, 0, .8);
 }
 
 @media screen and (max-width: 767px) {

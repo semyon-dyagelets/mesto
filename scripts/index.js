@@ -9,8 +9,8 @@ let jobInput = popup.querySelector('.popup__input_edit_description');
 
 function showPopup() {
     popup.classList.add('popup_opened');
-    profileName.textContent;
-    profileProfession.textContent;
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileProfession.textContent;
 }
 
 function closePopup() {

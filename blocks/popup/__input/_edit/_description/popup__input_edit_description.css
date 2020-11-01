@@ -1,9 +1,9 @@
-.popup__edit_description {
+.popup__input_edit_description {
     margin: 30px auto 0;
 }
 
 @media screen and (max-width: 767px) {
-    .popup__edit_description {
+    .popup__input_edit_description {
         margin: 25px auto 0;
     } 
 }

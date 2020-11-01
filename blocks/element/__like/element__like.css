@@ -5,6 +5,8 @@
     background-size: 100%;
     width: 21px;
     height: 19px;
+    outline: none;
+
 }
 
 .element__like:hover {

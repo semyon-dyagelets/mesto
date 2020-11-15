@@ -84,24 +84,6 @@ function showImageCaptionPopup (name, link, alt) {
     showPopup(popupTypeImageCaption);
 }
 
-function formSubmitHandler (event) {
-    event.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileProfession.textContent = jobInput.value;
-    closePopup(popupTypeEdit);
-}
-
-function formAddCardHandler (event) {
-    event.preventDefault();
-    const cardData = {
-        name: cardNameInput.value,
-        link: cardImageInput.value,
-    }
-    addCardToContainer(cardData);
-    closePopup(popupTypeAddCard);
-    formAddCardElement.reset();
-}
-
 editButton.addEventListener ('click', () => {
     showPopup(popupTypeEdit);
     nameInput.value = profileName.textContent;
@@ -110,6 +92,20 @@ editButton.addEventListener ('click', () => {
 closeButton.addEventListener ('click', () => closePopup(popupTypeEdit));
 addButton.addEventListener('click', () => showPopup(popupTypeAddCard));
 closePopupCardButton.addEventListener('click', () => closePopup(popupTypeAddCard));
-formElement.addEventListener('submit', formSubmitHandler);
-formAddCardElement.addEventListener('submit', formAddCardHandler);
+formElement.addEventListener('submit', event => {
+    event.preventDefault();
+    profileName.textContent = nameInput.value;
+    profileProfession.textContent = jobInput.value;
+    closePopup(popupTypeEdit);
+});
+formAddCardElement.addEventListener('submit', event => {
+    event.preventDefault();
+    const cardData = {
+        name: cardNameInput.value,
+        link: cardImageInput.value,
+    }
+    addCardToContainer(cardData);
+    closePopup(popupTypeAddCard);
+    formAddCardElement.reset();
+});
 closePopupImageCaptionButton.addEventListener('click', () => closePopup(popupTypeImageCaption));

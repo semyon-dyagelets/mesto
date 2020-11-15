@@ -6,7 +6,7 @@
     width: 21px;
     height: 19px;
     outline: none;
-
+    cursor: pointer;
 }
 
 .element__like:hover {

@@ -48,7 +48,7 @@ function createCard(data) {
     const cardElement = document.querySelector('#template-element').content.cloneNode(true);
     cardElement.querySelector('.element__place-name').textContent = data.name;
     const imageElement = cardElement.querySelector('.element__photo');
-    imageElement.alt = data.alt;
+    imageElement.alt = data.name;
     imageElement.src = data.link;
     cardElement.querySelector('.element__like').addEventListener('click', event => {
         event.target.classList.toggle('element__like_active');
@@ -57,7 +57,7 @@ function createCard(data) {
         const card = event.target.closest('.element');
         card.remove();
     });
-    imageElement.addEventListener('click', () => showImageCaptionPopup(data.name, data.link, data.alt));
+    imageElement.addEventListener('click', () => showImageCaptionPopup(data.name, data.link));
     return cardElement;
 }
 
@@ -77,10 +77,10 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-function showImageCaptionPopup (name, link, alt) {
+function showImageCaptionPopup (name, link) {
     popupImageTitle.textContent = name;
     popupImageCaption.src = link;
-    popupImageCaption.alt = alt;
+    popupImageCaption.alt = popupImageTitle.textContent;
     showPopup(popupTypeImageCaption);
 }
 

@@ -18,6 +18,7 @@ const popupTypeImageCaption = document.querySelector('.popup_type-image-caption'
 const popupImageCaption = popupTypeImageCaption.querySelector('.popup__caption-image');
 const popupImageTitle = popupTypeImageCaption.querySelector('.popup__caption-image-title');
 const closePopupImageCaptionButton = popupTypeImageCaption.querySelector('.popup__button-close');
+const popupOpened = document.querySelector('.popup_opened');
 
 const initialCards = [
     {
@@ -97,10 +98,10 @@ function closePopupByEscape(event) {
     }
 }
 
-function closePopupClickingOutside (event) { 
-    const overlay = document.querySelector('.popup'); 
-    if (event.target == overlay) {
-        closePopup(overlay)
+function closePopupClickingOutside (event) {
+    const popupOpened = document.querySelector('.popup_opened');
+    if (event.target == popupOpened) {
+        closePopup(popupOpened);
     }
 }
 

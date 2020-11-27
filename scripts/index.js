@@ -7,8 +7,6 @@ const closeButton = popupTypeEdit.querySelector('.popup__button-close');
 const formEdit = popupTypeEdit.querySelector('.popup__container_edit-form');
 const nameInput = formEdit.querySelector('.popup__input_edit_name');
 const jobInput = formEdit.querySelector('.popup__input_edit_description');
-const inputList = formEdit.querySelectorAll('.popup__input');
-const submitProfileButton = formEdit.querySelector('.popup__button-save');
 const popupTypeAddCard = document.querySelector('.popup_type-add-card');
 const closePopupCardButton = popupTypeAddCard.querySelector('.popup__button-close');
 const formAddCardElement = popupTypeAddCard.querySelector('.popup__container_add-card-form');
@@ -18,8 +16,8 @@ const popupTypeImageCaption = document.querySelector('.popup_type-image-caption'
 const popupImageCaption = popupTypeImageCaption.querySelector('.popup__caption-image');
 const popupImageTitle = popupTypeImageCaption.querySelector('.popup__caption-image-title');
 const closePopupImageCaptionButton = popupTypeImageCaption.querySelector('.popup__button-close');
-const popupOpened = document.querySelector('.popup_opened');
-
+const cardTemplate = document.querySelector('#template-element').content;
+const cardsContainer = document.querySelector('.elements');
 const initialCards = [
     {
         name: 'Архыз',
@@ -48,7 +46,7 @@ const initialCards = [
 ];
 
 function createCard(data) {
-    const cardElement = document.querySelector('#template-element').content.cloneNode(true);
+    const cardElement = cardTemplate.cloneNode(true);
     cardElement.querySelector('.element__place-name').textContent = data.name;
     const imageElement = cardElement.querySelector('.element__photo');
     const deleteButton = cardElement.querySelector('.element__delete');
@@ -66,9 +64,8 @@ function createCard(data) {
 }
 
 function addCardToContainer(data) {
-    const elements = document.querySelector('.elements');
     const element = createCard(data);
-    elements.prepend(element);
+    cardsContainer.prepend(element);
 }
 
 initialCards.forEach(addCardToContainer);
@@ -81,7 +78,8 @@ function showPopup(popup) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupByEscape)
+    document.removeEventListener('keydown', closePopupByEscape);
+    document.removeEventListener('mousedown', closePopupClickingOutside);
 }
 
 function showImageCaptionPopup (name, link) {
@@ -92,15 +90,15 @@ function showImageCaptionPopup (name, link) {
 }
 
 function closePopupByEscape(event) {
-    const popupOpened = document.querySelector('.popup_opened');
     if (event.key === 'Escape') {
+        const popupOpened = document.querySelector('.popup_opened');
         closePopup(popupOpened);
     }
 }
 
 function closePopupClickingOutside (event) {
-    const popupOpened = document.querySelector('.popup_opened');
-    if (event.target == popupOpened) {
+    if (event.target.classList.contains('popup')) {
+        const popupOpened = document.querySelector('.popup_opened');
         closePopup(popupOpened);
     }
 }

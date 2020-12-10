@@ -1,7 +1,9 @@
-const editButton = document.querySelector('.profile__edit-button');
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 const addButton = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
+const editButton = document.querySelector('.profile__edit-button');
 const popupTypeEdit = document.querySelector('.popup_type-edit');
 const closeButton = popupTypeEdit.querySelector('.popup__button-close');
 const formEdit = popupTypeEdit.querySelector('.popup__container_edit-form');
@@ -16,8 +18,7 @@ const popupTypeImageCaption = document.querySelector('.popup_type-image-caption'
 const popupImageCaption = popupTypeImageCaption.querySelector('.popup__caption-image');
 const popupImageTitle = popupTypeImageCaption.querySelector('.popup__caption-image-title');
 const closePopupImageCaptionButton = popupTypeImageCaption.querySelector('.popup__button-close');
-const cardTemplate = document.querySelector('#template-element').content;
-const cardsContainer = document.querySelector('.elements');
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -45,30 +46,14 @@ const initialCards = [
     }
 ];
 
-function createCard(data) {
-    const cardElement = cardTemplate.cloneNode(true);
-    cardElement.querySelector('.element__place-name').textContent = data.name;
-    const imageElement = cardElement.querySelector('.element__photo');
-    const deleteButton = cardElement.querySelector('.element__delete');
-    imageElement.alt = data.name;
-    imageElement.src = data.link;
-    cardElement.querySelector('.element__like').addEventListener('click', event => {
-        event.target.classList.toggle('element__like_active');
-    });
-    deleteButton.addEventListener('click', event => {
-        const card = event.target.closest('.element');
-        card.remove();
-    });
-    imageElement.addEventListener('click', () => showImageCaptionPopup(data.name, data.link));
-    return cardElement;
-}
-
-function addCardToContainer(data) {
-    const element = createCard(data);
-    cardsContainer.prepend(element);
+function addCardToContainer(item) {
+    const card = new Card(item, '.card-template_type_default', showImageCaptionPopup);
+    const CardElement = card.generateCard();
+    document.querySelector('.elements').prepend(CardElement);
 }
 
 initialCards.forEach(addCardToContainer);
+
 
 function showPopup(popup) {
     popup.classList.add('popup_opened');
@@ -82,7 +67,7 @@ function closePopup(popup) {
     document.removeEventListener('mousedown', closePopupClickingOutside);
 }
 
-function showImageCaptionPopup (name, link) {
+function showImageCaptionPopup(name, link) {
     popupImageTitle.textContent = name;
     popupImageCaption.src = link;
     popupImageCaption.alt = popupImageTitle.textContent;
@@ -107,7 +92,6 @@ editButton.addEventListener ('click', () => {
     showPopup(popupTypeEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileProfession.textContent;
-    resetValidation(popupTypeEdit, validationConfig);
 });
 
 closeButton.addEventListener ('click', () => closePopup(popupTypeEdit));
@@ -116,7 +100,6 @@ addButton.addEventListener('click', () => {
     showPopup(popupTypeAddCard);
     cardNameInput.value = '';
     cardImageInput.value = '';
-    resetValidation(popupTypeAddCard, validationConfig);
 });
 
 closePopupCardButton.addEventListener('click', () => closePopup(popupTypeAddCard));
@@ -140,3 +123,20 @@ formAddCardElement.addEventListener('submit', event => {
 });
 
 closePopupImageCaptionButton.addEventListener('click', () => closePopup(popupTypeImageCaption));
+
+const validationConfig = {
+    formSelector: '.popup__container',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button-save',
+    inactiveButtonClass: 'popup__button-save_inactive',
+    inputErrorClass: 'popup__input_type_error',
+  };
+
+const profileEditFormValidator = new FormValidator (validationConfig, formEdit);
+profileEditFormValidator.enableValidation();
+profileEditFormValidator.resetValidation();
+
+const addCardFormValidator = new FormValidator (validationConfig, formAddCardElement);
+addCardFormValidator.enableValidation();
+addCardFormValidator.resetValidation();
+

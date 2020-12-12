@@ -25,14 +25,16 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._element.querySelector('.element__like').addEventListener('click', event => {
-            event.target.classList.toggle('element__like_active');
-        });
-
-        this._element.querySelector('.element__delete').addEventListener('click', event => {
-            const card = event.target.closest('.element');
-            card.remove();
-        });
+        this._element.querySelector('.element__like').addEventListener('click', () => this._handleCardLike());
+        this._element.querySelector('.element__delete').addEventListener('click', () => this._removeCard());
         this._element.querySelector('.element__photo').addEventListener('click', () => this._showImageCaptionPopup(this._name, this._link));
+    }
+
+    _handleCardLike() {
+        this._element.querySelector('.element__like').classList.toggle('element__like_active'); 
+    }
+
+    _removeCard() {
+        this._element.remove();
     }
 }

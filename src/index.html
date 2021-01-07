@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto Russia</title>
 </head>
 <body class="body">
     <div class="page">
         <header class="header">
-            <a href="#" target="_self"><img class="header__logo" src="./images/logo-white.svg" alt="Место-логотип"></a>
+            <a href="#" target="_self"><img class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="Место-логотип"></a>
         </header>
         <main>
             <section class="profile">
                 <div class="profile__container">
-                    <img class="profile__avatar" src="images/photo-kusto.jpg" alt="аватар">
+                    <img class="profile__avatar" src="<%=require('./images/photo-kusto.jpg') %>" alt="аватар">
                     <div class="profile__info">
                         <div class="profile__description">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -73,7 +72,7 @@
                     <input 
                     class="popup__input popup__input_edit_description" 
                     id="place-link-input" 
-                    name="place" 
+                    name="link" 
                     type="url" 
                     value="" 
                     placeholder="Ссылка на картинку"

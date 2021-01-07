@@ -1,3 +1,12 @@
+export const addButton = document.querySelector('.profile__add-button');
+export const elements = document.querySelector('.elements');
+export const profileName = document.querySelector('.profile__name');
+export const profileProfession = document.querySelector('.profile__profession');
+export const editButton = document.querySelector('.profile__edit-button');
+export const formEdit = document.querySelector('.popup__container_edit-form');
+export const formAddCardElement = document.querySelector('.popup__container_add-card-form');
+export const cardListSelector = '.elements';
+
 export const initialCards = [
     {
         name: 'Архыз',

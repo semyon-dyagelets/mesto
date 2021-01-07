@@ -1,9 +1,11 @@
-export class Card {
-    constructor (data, cardSelector, showImageCaptionPopup) {
+import PopupWithImage from "./PopupWithImage.js";
+
+export default class Card {
+    constructor(data, handleCardClick, cardSelector) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-        this._showImageCaptionPopup = showImageCaptionPopup;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -21,13 +23,18 @@ export class Card {
         this._setEventListeners();
         this._element.querySelector('.element__photo').src = this._link;
         this._element.querySelector('.element__place-name').textContent = this._name;
+        
         return this._element;
+    }
+
+    handleCardClick(link, name) {
+        PopupWithImage.open(link, name);
     }
 
     _setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', () => this._handleCardLike());
         this._element.querySelector('.element__delete').addEventListener('click', () => this._removeCard());
-        this._element.querySelector('.element__photo').addEventListener('click', () => this._showImageCaptionPopup(this._name, this._link));
+        this._element.querySelector('.element__photo').addEventListener('click', () => this._handleCardClick(this._link, this._name));
     }
 
     _handleCardLike() {

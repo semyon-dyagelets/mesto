@@ -1,5 +1,4 @@
 export const addButton = document.querySelector('.profile__add-button');
-export const elements = document.querySelector('.elements');
 export const profileName = document.querySelector('.profile__name');
 export const profileProfession = document.querySelector('.profile__profession');
 export const editButton = document.querySelector('.profile__edit-button');

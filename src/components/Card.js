@@ -23,14 +23,14 @@ export default class Card {
         this._setEventListeners();
         this._element.querySelector('.element__photo').src = this._link;
         this._element.querySelector('.element__place-name').textContent = this._name;
+        this._element.querySelector('.element__photo').alt = this._name;
         
         return this._element;
     }
 
-    handleCardClick(link, name) {
+    handleCardClick(link, name) { 
         PopupWithImage.open(link, name);
-    }
-
+            } 
     _setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', () => this._handleCardLike());
         this._element.querySelector('.element__delete').addEventListener('click', () => this._removeCard());

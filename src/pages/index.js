@@ -5,7 +5,6 @@ import Section from '../components/Section.js';
 import { cardListSelector, 
     addButton,
     editButton,
-    elements,
     initialCards,
     profileName,
     profileProfession,
@@ -44,7 +43,7 @@ addCardFormValidator.resetValidation();
 const userProfile = new UserInfo(profileName, profileProfession);
 
 const popupEditProfile = new PopupWithForm({
-    popupSelector: '.popup_type-edit',
+    popup: '.popup_type-edit',
     handleFormSubmit: (formData) => {
         userProfile.setUserInfo(formData.name, formData.profession);
    } 
@@ -52,21 +51,23 @@ const popupEditProfile = new PopupWithForm({
 popupEditProfile.setEventListeners();
 
 editButton.addEventListener ('click', () => {
-    popupEditProfile.open()
+    popupEditProfile.open();
+    profileEditFormValidator.resetValidation();
 });
 
 const popupAddCard = new PopupWithForm({
-    popupSelector: '.popup_type-add-card',
+    popup: '.popup_type-add-card',
     handleFormSubmit: (item) => {
         const card = new Card(item, () => popupWithImage.open(item.link, item.name),'.card-template_type_default');
         const cardElement = card.generateCard();
-        elements.prepend(cardElement);
+        cardsList.addItem(cardElement);
     }
 });
 popupAddCard.setEventListeners();
 
 addButton.addEventListener('click', () => {
     popupAddCard.open();
+    addCardFormValidator.resetValidation();
 });
 
 const popupWithImage = new PopupWithImage('.popup_type-image-caption');

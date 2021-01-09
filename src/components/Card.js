@@ -21,16 +21,15 @@ export default class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-        this._element.querySelector('.element__photo').src = this._link;
-        this._element.querySelector('.element__place-name').textContent = this._name;
-        this._element.querySelector('.element__photo').alt = this._name;
+        this._cardImage = this._element.querySelector('.element__photo');
+        this._cardName = this._element.querySelector('.element__place-name');
+        this._cardName.textContent = this._name;
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
         
         return this._element;
     }
 
-    handleCardClick(link, name) { 
-        PopupWithImage.open(link, name);
-            } 
     _setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', () => this._handleCardLike());
         this._element.querySelector('.element__delete').addEventListener('click', () => this._removeCard());

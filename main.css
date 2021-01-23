@@ -6,11 +6,13 @@
 .header__logo{height:100%;margin:0 auto 40px 0}@media screen and (max-width:767px){.header__logo{width:104px;margin:0 auto 30px 27px}}
 .profile{color:#fff;width:calc(100% - 400px);margin:40px auto 0;box-sizing:border-box;display:flex;flex-direction:row;justify-content:space-between;align-items:center}@media screen and (max-width:767px){.profile{width:calc(100% - 38px);margin:42px auto 0;flex-direction:column}}
 .profile__container{display:flex;flex-direction:row;justify-content:flex-start;align-items:center}@media screen and (max-width:767px){.profile__container{flex-direction:column}}
-.profile__avatar{width:120px;height:120px;border-radius:50%}
+.profile__avatar-container{position:relative;background:#000}.profile__avatar-container:hover{opacity:.8}
+.profile__avatar{width:120px;height:120px;border-radius:50%}.profile__avatar:hover{opacity:.8}
 .profile__info{display:flex;flex-direction:row;justify-content:space-between;align-items:flex-start;margin:22px auto 0 26px;width:336px}@media screen and (max-width:767px){.profile__info{width:100%}}
 .profile__name{max-width:294px;margin:0;font-style:normal;font-weight:500;font-size:42px;line-height:48px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}@media screen and (max-width:767px){.profile__name{font-size:27px;line-height:33px;text-align:center}}
 .profile__profession{max-width:336px;margin-top:16px;font-style:normal;font-weight:400;font-size:18px;line-height:22px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}@media screen and (max-width:767px){.profile__profession{font-size:14px;line-height:17px;text-align:center}}
 .profile__edit-button{background:url(images/edit-button.8667ac4a523e8fc42e59.svg) 50% no-repeat;width:24px;height:24px;border:1px solid #fff;background-color:#000;margin:15px 0 auto;cursor:pointer}.profile__edit-button:hover{opacity:.6}@media screen and (max-width:767px){.profile__edit-button{width:18px;height:18px;margin:8px 0 auto}}
+.profile__edit-avatar-button{position:absolute;top:40%;left:40%;margin:0;display:none;background:url(images/edit-avatar-icon.a086f758840ae814ecde.svg) 50% no-repeat;border:none}.profile__avatar-container:hover .profile__edit-avatar-button{display:block}
 .profile__add-button{background:url(images/add-button.d86bb2edc2f6eadb96b7.svg) 50% no-repeat;width:150px;height:50px;border:2px solid #fff;border-radius:2px;background-color:#000;cursor:pointer}.profile__add-button:hover{opacity:.6}@media screen and (max-width:767px){.profile__add-button{width:100%}}
 .elements{box-sizing:border-box;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:calc(100% - 400px);grid-gap:17px;margin:47px auto 0}@media screen and (max-width:767px){.elements{grid-template-columns:repeat(1,minmax(0,1fr));grid-gap:17px 20px;width:calc(100% - 38px);margin:36px auto 0}}
 .element{position:relative;background-color:#fff;border-radius:10px;max-width:282px}
@@ -19,7 +21,8 @@
 .element__place-name{max-width:222px;margin:0;font-style:normal;font-weight:900;font-size:24px;line-height:29px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .element__like{border:none;background:url(images/icon-like.49570bcb1d637fdb38e5.svg) 50% no-repeat;background-color:#fff;background-size:100%;width:21px;height:19px;outline:none;cursor:pointer}.element__like:hover{opacity:.6}
 .element__like_active{background:url(images/icon-like-active.75438e944a43e4c0b404.svg) 50% no-repeat}
-.element__delete{position:relative;width:18px;height:19px;top:-264px;left:249px;border:none;background:url(images/icon-trash.cbc09a894bdd4c956365.svg) 50% no-repeat;background-color:none;background-size:100%;outline:none;cursor:pointer}.element__delete:hover{opacity:.6}
+.element__like-counter{margin:0;font-size:13px;line-height:16px;text-align:center}
+.element__delete{position:absolute;width:18px;height:19px;top:26px;left:249px;border:none;background:url(images/icon-trash.cbc09a894bdd4c956365.svg) 50% no-repeat;background-color:none;background-size:100%;outline:none;cursor:pointer}.element__delete:hover{opacity:.6}
 .footer{width:calc(100% - 400px);margin:67px auto 60px}@media screen and (max-width:767px){.footer{width:calc(100% - 38px);margin:48px auto 36px}}
 .footer__copyright{margin:0;font-style:normal;font-weight:400;font-size:18px;line-height:22px;color:#545454}@media screen and (max-width:767px){.footer__copyright{font-size:14px;line-height:17px}}
 .popup{visibility:hidden;opacity:0;transition:visibility 1s,opacity .5s linear;position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.5);display:flex;flex-direction:row;justify-content:center;align-items:center}

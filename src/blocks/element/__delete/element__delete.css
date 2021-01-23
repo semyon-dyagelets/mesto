@@ -1,8 +1,8 @@
 .element__delete {
-    position: relative;
+    position: absolute;
     width: 18px;
     height: 19px;
-    top: -264px;
+    top: 26px;
     left: 249px;
     border: none;
     background: url(../../../images/icon-trash.svg) center no-repeat;

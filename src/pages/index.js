@@ -12,21 +12,14 @@ import {
     profileProfession,
     formEdit,
     formAddCardElement,
-    formEditAvatar
-} from '../components/constants.js';
+    formEditAvatar,
+    validationConfig
+} from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupConfirm from '../components/PopupConfirm.js';
 import UserInfo from '../components/UserInfo.js';
 import API from '../components/API.js';
-
-const validationConfig = {
-    formSelector: '.popup__container',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_inactive',
-    inputErrorClass: 'popup__input_type_error',
-};
 
 const cardsList = new Section({
     renderer: (item) => {
@@ -131,17 +124,12 @@ Promise.all([
     api.getUserInfo(),
     api.getInitialCards()
 ])
-    .then((res) => {
-        const userName = res[0].name;
-        const userAbout = res[0].about;
-        const userAvatar = res[0].avatar;
-        const cardsData = res[1];
-        userID = res[0]._id;
-        console.log(res);
-        userProfile.setUserInfo(userName, userAbout);
-        userProfile.setUserAvatar(userAvatar);
-        cardsList.renderItems(cardsData);
-    })
+.then(([{_id, name, about, avatar}, cardsData]) => {
+    userID = _id
+    userProfile.setUserInfo(name, about);
+    userProfile.setUserAvatar(avatar);
+    cardsList.renderItems(cardsData);
+})
     .catch((err) => {
         console.log(err)
     });
